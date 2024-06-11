@@ -11,11 +11,7 @@ app.use(express.json());
 const MERKLE_ROOT = '';
 
 app.post('/gift', (req, res) => {
-  // grab the parameters from the front-end here
-  const body = req.body;
-
-  // TODO: prove that a name is in the list 
-  const isInTheList = false;
+  const isInTheList = verifyProof(req.body.proof, req.body.leaf, req.body.root);
   if(isInTheList) {
     res.send("You got a toy robot!");
   }
